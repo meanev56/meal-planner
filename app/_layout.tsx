@@ -2,9 +2,7 @@
  * @format
  */
 
-import { name as appName } from "@/app.json";
 import { Stack } from "expo-router";
-import { AppRegistry } from "react-native";
 import { ModalPortal } from "react-native-modals";
 
 export default function RootLayout() {
@@ -12,13 +10,28 @@ export default function RootLayout() {
     <>
       <Stack
         screenOptions={{
-          headerShown: false,        // Hide default header if you want full control
+          headerShown: false,
+          animation: "slide_from_right",
         }}
-      />
+      >
+        {/* Modal Screens */}
+        <Stack.Screen
+          name="copy-modal"
+          options={{
+            presentation: "modal",
+            animation: "slide_from_bottom",
+          }}
+        />
+        <Stack.Screen
+          name="delete-modal"
+          options={{
+            presentation: "modal",
+            animation: "slide_from_bottom",
+          }}
+        />
+      </Stack>
+
       <ModalPortal />
     </>
   );
 }
-
-// Register the app (kept for compatibility with bare React Native style)
-AppRegistry.registerComponent(appName, () => RootLayout);
